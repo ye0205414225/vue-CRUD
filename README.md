@@ -151,19 +151,19 @@ upList() {
 儲存編輯項目
 ```
 setList() {
-                this.loading = true;
-                var setData = {}
-                for (item in this.listData) {
-                    if (this.listData[item].edit) {
-                        if (this.listData[item].title == '') {
-                            this.$message.error('欄位不可為空')
-                            this.loading = false;
-                            return false
-                        } else {
-                            this.listData[item].edit = false;
-                            //setData[item] = this.listData[item]
-                        }
-                    }
-                }
-           }
+               this.loading = true;
+               var setData = {}
+               for (item in this.listData) {
+                   if (this.listData[item].edit) {
+                       if (this.listData[item].title == '') {
+                           this.$message.error('欄位不可為空')
+                           this.loading = false;
+                           return false
+                       } else {
+                           this.listData[item].edit = false;
+                           //setData[item] = this.listData[item]
+                       }
+                   }
+               }
+          }
 ```
