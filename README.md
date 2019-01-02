@@ -26,5 +26,5 @@ Vue 前端基本 CRUD 操作課程
             listData: [],       // 列表
             allchackbox:false,  // 批次勾選
         },
-     )};
+     });
 ```
