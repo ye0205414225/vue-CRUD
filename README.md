@@ -15,3 +15,16 @@ Vue 前端基本 CRUD 操作課程
 # 設定 新增function
 <button v-on:click="addList(key)" type="button" class="btn btn-primary">增加</button>
 ```
+``` 
+# 宣告 使用vuejs
+# 宣告 預處理 變數資料
+
+ var app = new Vue({
+        el: '#vueContent',
+        data: {
+            loading: true,      // 載入
+            listData: [],       // 列表
+            allchackbox:false,  // 批次勾選
+        },
+     )};
+```
