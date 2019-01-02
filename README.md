@@ -66,6 +66,7 @@ mounted() {
              {{ item.title }}
          </template>
       </td>
+      #加入新增按鈕及勾選框
       <td>
          <button v-on:click="addList(key)" type="button" class="btn btn-primary">增加</button>
             <input v-on:click="[item.checkbox?item.checkbox=false:item.checkbox=true]" type="checkbox"
@@ -73,3 +74,96 @@ mounted() {
       </td>
 </tr>
 ``` 
+使用 methods 
+
+全選
+```
+  allCheckBox(){
+                // 判斷是否勾選全部
+                if(this.allchackbox == true){
+                    for(item  in this.listData){
+                        this.listData[item].checkbox = true
+                    }
+                }else{
+                    for(item  in this.listData){
+                        this.listData[item].checkbox = false
+                    }
+                }
+            },
+```
+新增500筆數
+```
+add500(){
+        // 新增500筆
+         var i = 0
+         //從當前數據最後一筆開始新增
+         for (item in this.listData){
+             i++
+         }
+
+         var totel = i + 500 -1
+
+         for (var v = i ; v <= total ; v++){
+             this.listData.splice(v, 0, {
+                  id: false,
+                  title: '第'+ (v+1) +'筆',
+                  checkbox: false,
+                  edit: true,
+                  })
+             }
+        },
+```
+新增選擇後一筆
+```
+   addList(key) {
+                // 新增當下排序後一筆
+                this.listData.splice(key + 1, 0, {
+                    id: false,
+                    title: '',
+                    checkbox: false,
+                    edit: true,
+                })
+            },
+```
+批次刪除
+```
+   delList() {
+                this.loading = true;
+                var delData = {}
+                for (let i = this.listData.length - 1; i >= 0; i--) {
+                    if (this.listData[i].checkbox) {
+                        this.listData.splice(i, 1);
+                        //delData[i] = this.listData[i]
+                    }
+                }
+              }
+```
+點選批次編輯判斷
+```
+upList() {
+           for (let i = this.listData.length - 1; i >= 0; i--) {
+               if (this.listData[i].checkbox) {
+                        this.listData[i].edit = true
+               }
+            }
+         },
+```
+儲存編輯項目
+```
+setList() {
+                this.loading = true;
+                var setData = {}
+                for (item in this.listData) {
+                    if (this.listData[item].edit) {
+                        if (this.listData[item].title == '') {
+                            this.$message.error('欄位不可為空')
+                            this.loading = false;
+                            return false
+                        } else {
+                            this.listData[item].edit = false;
+                            //setData[item] = this.listData[item]
+                        }
+                    }
+                }
+           }
+```
