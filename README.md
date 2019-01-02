@@ -15,10 +15,9 @@ Vue 前端基本 CRUD 操作課程
 # 設定 新增function
 <button v-on:click="addList(key)" type="button" class="btn btn-primary">增加</button>
 ```
+宣告 使用vuejs
+宣告 預處理 變數資料
 ``` 
-# 宣告 使用vuejs
-# 宣告 預處理 變數資料
-
  var app = new Vue({
         el: '#vueContent',
         data: {
@@ -28,3 +27,49 @@ Vue 前端基本 CRUD 操作課程
         },
      });
 ```
+使用 mounted function 預先寫入數據
+``` 
+mounted() {
+
+            // 預先載入處理資料 json 物件
+            this.listData = [
+                {
+                    id: false,
+                    title: '',
+                    checkbox: false,
+                    edit: true,
+                },
+                {
+                    id: false,
+                    title: '啊啊啊啊',
+                    checkbox: false,
+                    edit: false,
+                },
+                {
+                    id: false,
+                    title: '喔喔喔喔',
+                    checkbox: false,
+                    edit: false,
+                },
+            ]
+        }
+```
+使用v-for迴圈 列出 listData 內的資料
+``` 
+<tr v-for="(item,key,arr) in listData">
+   <th scope="row">{{ key+1 }}</th>
+      <td>
+         <template v-if="item.edit">
+            <input v-model="item.title" type="text" class="form-control">
+         </template>
+         <template v-else>
+             {{ item.title }}
+         </template>
+      </td>
+      <td>
+         <button v-on:click="addList(key)" type="button" class="btn btn-primary">增加</button>
+            <input v-on:click="[item.checkbox?item.checkbox=false:item.checkbox=true]" type="checkbox"
+            :checked="item.checkbox">
+      </td>
+</tr>
+``` 
